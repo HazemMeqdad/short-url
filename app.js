@@ -7,7 +7,7 @@ const cros = require("cors");
 
 dotenv.config()
 
-mongoose.connect("mongodb://localhost:27017/short")
+mongoose.connect(process.env.MONGO_URI)
 
 const shortRoutes = require("./api/routes/short");
 const userRoutes = require("./api/routes/user");
