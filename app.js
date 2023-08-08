@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cros = require("cors");
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ const redirectRoutes = require("./api/routes/redirect");
 
 const app = express();
 
+app.use(cros()); // Allow cross-origin requests
 app.use(morgan("dev"));  // Log requests to console
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
