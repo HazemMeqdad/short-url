@@ -60,10 +60,21 @@ module.exports.login = (req, res, next) => {
                         expiresIn: "1day"
                     }
                 )
-                return res.status(200).json({
+                res.status(200).json({
                     message: "Auth successful",
                     token: token
                 })
+                User.updateOne({_id: result[0]._id}, {lastLogin: Date.now()})
+                    .exec()
+                    .then(result => {
+
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json({
+                            error: err
+                        })
+                    })
             }
         })
         .catch(err => {
